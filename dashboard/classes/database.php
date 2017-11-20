@@ -1,5 +1,5 @@
 <?php 
-	class database {
+	class Database {
 		private static $connection;
 
 		public static function connect () {
@@ -28,7 +28,7 @@
 			self::disconnect();
 		}
 
-		public static function getRow ($query, $values) {
+		public static function getRow ($query, $values = null) {
 			self::connect();
 			$statement = self::$connection->prepare($query);
 			$statement->execute($values);

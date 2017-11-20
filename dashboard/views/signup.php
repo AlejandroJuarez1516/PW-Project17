@@ -56,6 +56,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/bootstrap.min.js"></script>
 	<script src="./javascript/init.js"></script>

@@ -31,7 +31,15 @@ document.getElementById("btn-send").addEventListener('click', function (event) {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 	xhr.onreadystatechange = function () {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			
+			const response = JSON.parse(xhr.responseText)
+			if (response.rows > 0) {
+				alertify.alert("¡Se ha creado el usuario en la base de datos!", function (event) {
+					event.preventDefault()
+					window.location.reload()
+				})
+			} else {
+				alertify.alert("Ocurrió un error, puedes volver a intentar la operación.");
+			}
 		}
 	}
 	xhr.send(JSON.stringify(fields))
