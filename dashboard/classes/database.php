@@ -43,5 +43,9 @@
 	        self::desconnect();
 	        return $statement->fetchAll(PDO::FETCH_BOTH);
 		}
+
+		public static function getConn(){
+			return self::$connection;
+		}
 	}
 ?>
