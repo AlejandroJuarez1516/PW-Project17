@@ -5,7 +5,7 @@
 
 	$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 	$serverName = $_SERVER['SERVER_NAME'];
-	$url = '2017/PW-Project17/dashboard/javascript/';
+	$url = 'PW-Project17/dashboard/javascript/';
 
 	$dashboard = $serverProtocol . '://' . $serverName . '/'. $url .'dashboard.js';
 	$blog = $serverProtocol . '://' . $serverName . '/'. $url .'blog.js';

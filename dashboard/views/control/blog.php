@@ -3,6 +3,12 @@
 	if(!isset($_SESSION['id']) || !isset($_SESSION['fullname']) || !isset($_SESSION['usertype']) || !isset($_SESSION['user'])){ 
 		echo '<script>window.location.href = "../../"</script>';
 	} 
+
+	$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
+	$serverName = $_SERVER['SERVER_NAME'];
+	$url = '2017/PW-Project17/assets/images/';
+
+	$noImage = $serverProtocol . '://' . $serverName . '/'. $url .'noImage.jpg';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,13 +33,9 @@
 					    <label for="title">Titulo del blog:</label>
 					    <input type="text" class="form-control" id="title">
 					  </div>
-					  <div class="form-group">
-					  	<div class="row">
-					  		<div class="col-md-6">
-					  			<button class="btn btn-outline-"></button>
-					  		</div>
-					  		<div class="col-md-6"></div>
-					  	</div>
+					  <div class="form-group text-center">
+						<img src="<?php echo $noImage; ?>" class="img-responsive blog-img" alt="blogImage" />
+					  	<button class="btn btn-outline-danger w-100">Cargar imagen.</button>
 					  </div>
 					  <div class="form-group">
 					    <label for="content">Contenido</label>

@@ -5,7 +5,7 @@
 	$return = false;
 	$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 	$serverName = $_SERVER['SERVER_NAME'];
-	$url = '2017/PW-Project17/assets/images/brand_w.png';
+	$url = 'PW-Project17/assets/images/brand_w.png';
 	if ($_SERVER['REQUEST_URI'] != "/2017/PW-Project17/dashboard/views/control/") {
 		$return = true;
 	}
