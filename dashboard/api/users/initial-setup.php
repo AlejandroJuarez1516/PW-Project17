@@ -5,7 +5,7 @@
 	$jsonObject = json_decode($json);
 
 	$sql = "INSERT INTO users (name, last_name, email, password, user_type) VALUES (?,?,?,?,?)";
-	$params = array($jsonObject->name, $jsonObject->lastname, $jsonObject->email, $jsonObject->password, 1);
+	$params = array($jsonObject->name, $jsonObject->lastname, $jsonObject->email, md5($jsonObject->password), 1);
 
 	Database::executeRow($sql, $params);
 
@@ -14,5 +14,4 @@
 
 	$output = array("rows" => $rows['users']);
 	echo json_encode($output);
-
 ?>
