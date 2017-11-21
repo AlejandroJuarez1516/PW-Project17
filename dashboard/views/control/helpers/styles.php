@@ -5,7 +5,7 @@
 
 	$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 	$serverName = $_SERVER['SERVER_NAME'];
-	$url = '2017/PW-Project17/assets/css/';
+	$url = 'PW-Project17/assets/css/';
 
 	$bootstrap = $serverProtocol . '://' . $serverName . '/'. $url .'bootstrap.min.css';
 	$styles = $serverProtocol . '://' . $serverName . '/'. $url .'styles.css';

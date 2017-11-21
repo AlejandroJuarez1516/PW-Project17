@@ -16,34 +16,16 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>Título</title>
   <meta name="description" content="Un Punto de venta.">
-  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/css/usuarioStyle.css">
-  <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap.min.css">
+
   </head>
   <body>
     <?php include('./helpers/navbar.php'); ?>
     <h1 style="color:white;font-weight:bold;font-family: fantasy;font-size:50px">Usuarios Registrados: </h1>
     <div class="row"> 
       <div class="col-md-6">
-              <form id="dataTable">
-                <table class="table table-bordered table-hover center" id="tablaProducto">                
-                  <thead>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Correo</th>
-                      <th>valor</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                </table>
-                 </form>
-                <h3 style="color:white;font-weight:bold;font-family:fantasy;font-size:px">Seleccione un rol para el usuario:</h3>            
-     </div>
-      <div class="col-md-6">
           <div class="contenedorBotones">
             <button class="btn btn-primary botonIngresar" style="margin-left:250px;">Ingresar</button>
-                <div id="contentIng" class="vista">
+                <div id="contentIng" style="display: none">
                   <form>
                           <div class="form-group">
                               <label for="nombre">Nombre</label>
@@ -69,7 +51,7 @@
                   </form>
           </div>
           <button class="btn btn-primary botonModificar" style="margin-left:250px;">Modificar</button>
-          <div id="contentIng2" class="vista">
+          <div id="contentIng2" style="display: none;">
                   <form>
                           <div class="form-group"  style="display:none">                            
                               <input class="form-control" type="text" id="id1" required>
@@ -100,13 +82,22 @@
           <input type="text" id="valorId">
       </div>
     </div>
-
-             
-    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
-    <script src="../../../assets/js/jquery.min.js"></script>
-    <script src="../../../assets/js/bootstrap.min.js"></script>    
-    <script src="../../../assets/js/jquery.dataTables.min.js"></script>
-    <script src="../../../assets/js/dataTables.bootstrap.js"></script>
+    <div class="col-md-6">
+              <form id="dataTable">
+                <table class="table table-bordered table-hover center"  id="tablaProducto">                
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Correo</th>
+                      <th>valor</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                </table>
+                 </form>         
+     </div>   
+    <?php include('./helpers/styles.php'); ?>
     <?php include('./helpers/scripts.php'); ?>
   </body>
 </html>

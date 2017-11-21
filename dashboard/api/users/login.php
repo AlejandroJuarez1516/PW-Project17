@@ -19,7 +19,7 @@
 
 		$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 		$serverName = $_SERVER['SERVER_NAME'];
-		$url = '2017/PW-Project17/dashboard/views/control';
+		$url = 'PW-Project17/dashboard/views/control';
 
 		$redirect = $serverProtocol . '://' . $serverName . '/'. $url;
 

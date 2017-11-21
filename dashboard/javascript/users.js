@@ -5,7 +5,7 @@ $(document).ready(function (){
   table = $("#tablaProducto").DataTable({
     "ajax":{
         "method": "POST",
-        "url": "../api/users/show.php"
+        "url": "../../api/users/show.php"
     },
      "columns":[
       {"data":"name"},
@@ -36,7 +36,7 @@ $("tbody").on("click", "button.borrar", function(){
     id: document.getElementById("valorId").value
   }
   var xhr = new loadHttpRequest()
-  xhr.open('POST', '../api/users/delete.php')
+  xhr.open('POST', '../../api/users/delete.php')
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   xhr.onreadystatechange = function () {
     if(xhr.readyState == 4 && xhr.status == 200) {
@@ -86,11 +86,11 @@ $(".botonIngresar").click(function(){
   var contenedor = $("#contentIng");
   if(!botonIngresar){
     boton.html("ocultar");
-    contenedor.removeAttr("class");
+    contenedor.removeAttr("style");
     botonIngresar = true;
   }else{
      boton.html("Ingresar");
-     contenedor.attr("class","vista");
+     contenedor.attr("style","display:none;");
      botonIngresar = false;
   }
 });
@@ -100,11 +100,11 @@ $(".botonModificar").click(function(){
   var contenedor = $("#contentIng2");
   if(!botonIngresar){
     boton.html("ocultar");
-    contenedor.removeAttr("class");
+    contenedor.removeAttr("style");
     botonIngresar = true;
   }else{
-     boton.html("Ingresar");
-     contenedor.attr("class","vista");
+     boton.html("Modificar");
+     contenedor.attr("style","display:none;");
      botonIngresar = false;
   }
 });
@@ -153,7 +153,6 @@ document.getElementById("insertButton").addEventListener('click', function (even
     password: document.getElementById("password").value,
     userType: document.getElementById("userType").value
   }
-  alert(document.getElementById("name").value);
   var xhr = new loadHttpRequest()
   xhr.open('POST', '../api/users/insert.php')
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
