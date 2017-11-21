@@ -56,8 +56,8 @@
 					<div class="card option">
 					  <div class="card-body">
 					   	<div class="text-center">
-					   		<span class="option-image"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-					   		<p>Administrar eventos.</p>
+					   		<span class="option-image"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+					   		<p>Administrar lugares.</p>
 					   		<a href="#" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
 					   	</div>
 					  </div>

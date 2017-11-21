@@ -24,4 +24,13 @@
 
 /************* Estilos del blog *************/
 
-.blog-content
+.blog-content {
+	width: 100%;
+	margin-top: 10%;
+	padding: 15px 15px;
+}
+
+.blog-content .title {
+	margin-bottom: 3%;
+}
+

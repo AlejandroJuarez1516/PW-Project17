@@ -49,8 +49,8 @@
 					title varchar(100) NOT NULL,
 					id_usuario int (11) NOT NULL,
 					blog_date date NOT NULL,
-					file varchar(100) NOT NULL,
 					image varchar(100) NOT NULL,
+					content text NOT NULL,
 					tags text,
 					PRIMARY KEY(id),
 					FOREIGN KEY(id_usuario) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
