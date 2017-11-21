@@ -6,7 +6,7 @@
 
 	$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 	$serverName = $_SERVER['SERVER_NAME'];
-	$url = '2017/PW-Project17/assets/images/';
+	$url = 'PW-Project17/assets/images/';
 
 	$noImage = $serverProtocol . '://' . $serverName . '/'. $url .'noImage.jpg';
 ?>
@@ -34,12 +34,22 @@
 					    <input type="text" class="form-control" id="title">
 					  </div>
 					  <div class="form-group text-center">
-						<img src="<?php echo $noImage; ?>" class="img-responsive blog-img" alt="blogImage" />
-					  	<button class="btn btn-outline-danger w-100">Cargar imagen.</button>
+						<div class="row">
+							<div class="col md-6">
+								<img src="<?php echo $noImage; ?>" class="img-responsive blog-img" alt="blogImage" />
+							</div>
+							<div class="col md-6">
+								<input type="file" id="file" hidden />
+								<button class="btn btn-outline-danger btn-file" id="btn-file"><i class="fa fa-plus" aria-hidden="true"></i></button>
+							</div>
+						</div>
 					  </div>
 					  <div class="form-group">
 					    <label for="content">Contenido</label>
 					    <textarea class="form-control" id="content" rows="7"></textarea>
+					  </div>
+					  <div class="form-group text-center">
+					  	<button class="btn btn-outline-dark" id="btn-send">Ingresar</button>
 					  </div>
 					</form>
 				</div>

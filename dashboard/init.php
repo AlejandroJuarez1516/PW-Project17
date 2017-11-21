@@ -49,7 +49,7 @@
 					title varchar(100) NOT NULL,
 					id_usuario int (11) NOT NULL,
 					blog_date date NOT NULL,
-					image varchar(100) NOT NULL,
+					image longblob NOT NULL,
 					content text NOT NULL,
 					tags text,
 					PRIMARY KEY(id),
