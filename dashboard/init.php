@@ -48,7 +48,7 @@
 					id int(11) NOT NULL AUTO_INCREMENT,
 					title varchar(100) NOT NULL,
 					id_usuario int (11) NOT NULL,
-					blog_date date DEFAULT GETDATE(),
+					blog_date date DEFAULT NOW(),
 					image longblob NOT NULL,
 					content text NOT NULL,
 					tags text,
