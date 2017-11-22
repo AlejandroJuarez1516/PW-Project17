@@ -5,7 +5,7 @@
 	$jsonObject = json_decode($json);
 	$output = array();
 
-	$sql = "SELECT id, CONCAT(name, ' ', last_name) AS fullname, email, user_type FROM users WHERE email = ? AND password = ?";
+	$sql = "SELECT id, CONCAT(name, ' ', lastname) AS fullname, email, usertype FROM users WHERE email = ? AND password = ?";
 	$params = array($jsonObject->email, md5($jsonObject->password));
 
 	$user = Database::getRow($sql, $params);
@@ -15,7 +15,7 @@
 		$_SESSION['user'] = $user['email'];
 		$_SESSION['fullname'] = $user['fullname'];
 		$_SESSION['id'] = $user['id'];
-		$_SESSION['usertype'] = $user['user_type'];
+		$_SESSION['usertype'] = $user['usertype'];
 
 		$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 		$serverName = $_SERVER['SERVER_NAME'];
@@ -25,7 +25,7 @@
 
 		$output[] = array (
 			"fullname" => $user['fullname'],
-			"usertype" => $user['user_type'],
+			"usertype" => $user['usertype'],
 			"redirect" => $redirect,
 			"success" => true
 		);

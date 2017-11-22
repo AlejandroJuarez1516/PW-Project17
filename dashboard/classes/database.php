@@ -33,15 +33,15 @@
 			$statement = self::$connection->prepare($query);
 			$statement->execute($values);
 			self::disconnect();
-			return $statement->fetch(PDO::FETCH_BOTH);
+			return $statement->fetch(PDO::FETCH_ASSOC);
 		}
 
 		public static function getData ($query, $values) {
 			self::connect();
 	        $statement = self::$connection->prepare($query);
 	        $statement->execute($values);
-	        self::desconnect();
-	        return $statement->fetchAll(PDO::FETCH_BOTH);
+	        self::disconnect();
+	        return $statement->fetchAll(PDO::FETCH_ASSOC);
 		}
 
 		public static function getConn(){
