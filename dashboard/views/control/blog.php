@@ -29,7 +29,7 @@
 		  <div class="buttons">
 		  	<button class="btn btn-outline-secondary" id="btn-send"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
 		  	<button class="btn btn-outline-secondary" id="btn-update"><i class="fa fa-refresh" aria-hidden="true"></i> Modificar</button>
-		  	<button class="btn btn-outline-secondary"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</button>
+		  	<button class="btn btn-outline-secondary" id="btn-delete"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</button>
 		  	<button class="btn btn-outline-secondary" id="btn-clear"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
 		  </div>	
 		  <form>

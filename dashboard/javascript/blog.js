@@ -5,13 +5,13 @@ function httpRequest () {
 const btnFile = document.getElementById("btn-file") || null
 const btnClear = document.getElementById("btn-clear") || null
 const btnUpdate = document.getElementById("btn-update") || null
+const btnDelete = document.getElementById("btn-delete") || null
 const btnSend = document.getElementById("btn-send") || null
 
 document.addEventListener("DOMContentLoaded", function () {
-	loadData()
-	CKEDITOR.replace('content')
-
 	if (btnFile != null) {
+		loadData()
+		CKEDITOR.replace('content')
 		fileListener()
 	}
 
@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	if (btnUpdate != null) {
 		updateListener()
+	}
+
+	if (btnDelete != null) {
+		deleteListener()
 	}
 })
 
@@ -72,13 +76,56 @@ function clearListener() {
 function updateListener () {
 	btnUpdate.addEventListener('click', function (event) {
 		event.preventDefault()
+	
+		if (document.getElementById("id").value.length == 0) {
+			alertify.alert("No se ha seleccionado ningun blog!")
+			return false
+		} 
+
 		var fields = {
+			id: document.getElementById("id").value,
 		 	title: document.getElementById("title").value,
-		 	content: CKEDITOR.instances.content.getData(),
-		 	image: result
+		 	image: document.getElementById("blog-img").src,
+		 	content: CKEDITOR.instances.content.getData()
 		}
+
 		const xhr = new httpRequest()
 		xhr.open('POST', '../../api/blogs/update-blog.php')
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				const response = JSON.parse(xhr.responseText)
+				if (response[0].success) {
+					alertify.alert(response[0].message , function (event) {
+						event.preventDefault()
+						const table = document.querySelector('.table-body')
+						btnClear.click()
+						getBlogs(table)
+					})
+				} else {
+					alertify.alert(response[0].message)
+				}
+			}
+		}
+		xhr.send(JSON.stringify(fields))
+	})
+}
+
+function deleteListener () {
+	btnDelete.addEventListener('click', function (event) {
+		event.preventDefault();
+
+		if (document.getElementById("id").value.length == 0) {
+			alertify.alert("No se ha seleccionado ningun blog!")
+			return false
+		} 
+
+		var fields = {
+			id: document.getElementById("id").value
+		}
+
+		const xhr = new httpRequest()
+		xhr.open('POST', '../../api/blogs/delete-blog.php')
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200) {
@@ -109,10 +156,6 @@ function fileListener () {
 function loadData () {
 	const table = document.querySelector('.table-body')
 	getBlogs(table)
-
-	var thread = setInterval(function() {
-		getBlogs(table)
-	}, 10000);
 }
 
 function getBlogs (dataTable) {
@@ -175,7 +218,7 @@ function editblog (element) {
 	}
 	document.getElementById("id").value = object.id
 	document.getElementById('title').value = object.title
-	document.getElementById('blog-img').src = "data:image/jpeg;base64" + object.image
+	document.getElementById('blog-img').src = "data:image/jpg;base64" + object.image
 	CKEDITOR.instances.content.setData(object.content)
 }
 

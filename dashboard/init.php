@@ -68,22 +68,12 @@
 				$san_salvador->execute();
 				/* Creación de tabla Galería */
 				$san_salvador = $this->connector->prepare('
-				CREATE TABLE IF NOT EXISTS gallery (
+				CREATE TABLE IF NOT EXISTS places (
 					id int(11) NOT NULL AUTO_INCREMENT,
-					gallery_name varchar(11) NOT NULL,
-					gallery_date date NOT NULL,
+					place varchar(100) NOT NULL,
+					image longblob NOT NULL,
+					description text NOT NULL,
 					PRIMARY KEY(id)
-				)');
-				$san_salvador->execute();
-				/* Creando tabla detalle de galería */
-				$san_salvador = $this->connector->prepare('
-				CREATE TABLE IF NOT EXISTS gallery_entry (
-					id int(11) NOT NULL AUTO_INCREMENT,
-					image_url varchar(100) NOT NULL,
-					gallery_id int(11) NOT NULL,
-					description text,
-					PRIMARY KEY(id),
-					FOREIGN KEY (gellery_id) REFERENCES gallery(id) ON UPDATE CASCADE ON DELETE RESTRICT
 				)');
 				$san_salvador->execute();
 			}
