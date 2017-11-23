@@ -12,11 +12,13 @@ $(document).ready(function (){
       {"data":"last_name"},
       {"data":"email"},
       {"data":"user_type"},
-      {"defaultContent":"<button type='button' class='editar'>Editar</button><button type='button' class='borrar'>Eliminar</button>"},
+      {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
     ]
   });
-}
-  listar()  
+
+ }
+
+  listar();
   //var tabla = setInterval(validarCampos,100);
   var obtenerData = function(){
   $("tbody").on("click", "button.editar", function(){
@@ -26,12 +28,15 @@ $(document).ready(function (){
   $("tbody").on("click", "button.borrar", function(){
     var data = table.row( $(this).parents("tr") ).data();
     var name = $("#valorId").val( data.id );
+    $("#valorId").val(data.id);
   });
 
 }
 
+obtenerData("#tablaProducto", table);
 $("tbody").on("click", "button.borrar", function(){
-    event.preventDefault()
+  if(confirm("¿Desea eliminar?")){
+  event.preventDefault()
   var fields = {
     id: document.getElementById("valorId").value
   }
@@ -50,14 +55,14 @@ $("tbody").on("click", "button.borrar", function(){
               table = $("#tablaProducto").DataTable({
                 "ajax":{
                     "method": "POST",
-                    "url": "../api/users/show.php"
+                    "url": "../../api/users/show.php"
                 },
                  "columns":[
                     {"data":"name"},
                     {"data":"last_name"},
                     {"data":"email"},
                     {"data":"user_type"},
-                    {"defaultContent":"<button type='button' class='editar'>Editar</button><button type='button' class='borrar'>Eliminar</button>"},
+                    {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
                   ]
               });
 }
@@ -69,15 +74,12 @@ $("tbody").on("click", "button.borrar", function(){
     }
   }
   xhr.send(JSON.stringify(fields))
-  });
-
-
-obtenerData("#tablaProducto", table);
+  }
 });
 
 
 
-
+});
 
 
 
@@ -87,43 +89,32 @@ $(".botonIngresar").click(function(){
   if(!botonIngresar){
     boton.html("ocultar");
     contenedor.removeAttr("style");
+    $("#update").attr("class","hide");
     botonIngresar = true;
   }else{
      boton.html("Ingresar");
-     contenedor.attr("style","display:none;");
+     contenedor.attr("style","display: none;");
+     $("#update").attr("class","btn btn-primary botonModificar");
      botonIngresar = false;
   }
 });
 
 $(".botonModificar").click(function(){
-  var boton = $(".botonModificar");
-  var contenedor = $("#contentIng2");
+  var boton2 = $(".botonModificar");
+  var contenedor2 = $("#contentIng2");
   if(!botonIngresar){
-    boton.html("ocultar");
-    contenedor.removeAttr("style");
+    boton2.html("ocultar");
+    contenedor2.removeAttr("style");
+    $("#insert").attr("class","hide");
     botonIngresar = true;
   }else{
-     boton.html("Modificar");
-     contenedor.attr("style","display:none;");
+     boton2.html("Actualizar");
+     contenedor2.attr("style","display: none;");
+     $("#insert").attr("class","btn btn-primary botonIngresar");
      botonIngresar = false;
   }
 });
 
-
-function listar(){
-  $("#tablaProducto").dataTable({
-    "ajax":{
-        "method": "POST",
-        "url": "../api/users/show.php"
-    },
-     "columns":[
-      {"data":"name"},
-      {"data":"last_name"},
-      {"data":"email"},
-      {"data":"user_type"}
-    ]
-  });
-}
 
 function loadHttpRequest () {
   var request = false
@@ -154,7 +145,7 @@ document.getElementById("insertButton").addEventListener('click', function (even
     userType: document.getElementById("userType").value
   }
   var xhr = new loadHttpRequest()
-  xhr.open('POST', '../api/users/insert.php')
+  xhr.open('POST', '../../api/users/insert.php')
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   xhr.onreadystatechange = function () {
     if(xhr.readyState == 4 && xhr.status == 200) {
@@ -168,14 +159,14 @@ document.getElementById("insertButton").addEventListener('click', function (even
             table = $("#tablaProducto").DataTable({
               "ajax":{
                   "method": "POST",
-                  "url": "../api/users/show.php"
+                  "url": "../../api/users/show.php"
               },
                "columns":[
                 {"data":"name"},
                 {"data":"last_name"},
                 {"data":"email"},
                 {"data":"user_type"},
-                {"defaultContent":"<button type='button' class='editar'>Editar</button><button type='button' class='borrar'>Eliminar</button>"},
+                {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
               ]
             });
           }
@@ -201,7 +192,7 @@ document.getElementById("updateButton").addEventListener('click', function (even
     userType: document.getElementById("userType1").value
   }
   var xhr = new loadHttpRequest()
-  xhr.open('POST', '../api/users/update.php')
+  xhr.open('POST', '../../api/users/update.php')
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   xhr.onreadystatechange = function () {
     if(xhr.readyState == 4 && xhr.status == 200) {
@@ -215,14 +206,14 @@ document.getElementById("updateButton").addEventListener('click', function (even
               table = $("#tablaProducto").DataTable({
                 "ajax":{
                     "method": "POST",
-                    "url": "../api/users/show.php"
+                    "url": "../../api/users/show.php"
                 },
                  "columns":[
                     {"data":"name"},
                     {"data":"last_name"},
                     {"data":"email"},
                     {"data":"user_type"},
-                    {"defaultContent":"<button type='button' class='editar'>Editar</button><button type='button' class='borrar'>Eliminar</button>"},
+                    {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
                   ]
               });
 }
@@ -235,3 +226,47 @@ document.getElementById("updateButton").addEventListener('click', function (even
   }
   xhr.send(JSON.stringify(fields))
 })
+
+
+$("tbody").on("click", "button.borrar", function(){
+  if(confirm("¿Desea eliminar?")){
+  event.preventDefault()
+  var fields = {
+    id: document.getElementById("valorId").value
+  }
+  var xhr = new loadHttpRequest()
+  xhr.open('POST', '../../api/users/delete.php')
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  xhr.onreadystatechange = function () {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      const response = JSON.parse(xhr.responseText)
+      if (response.rows > 0) {
+        alertify.alert("¡Se ha borrado de la base de datos!", function (event) {
+          event.preventDefault()          
+          //window.location.reload()
+          table.destroy();
+         var listar = function(){
+              table = $("#tablaProducto").DataTable({
+                "ajax":{
+                    "method": "POST",
+                    "url": "../../api/users/show.php"
+                },
+                 "columns":[
+                    {"data":"name"},
+                    {"data":"last_name"},
+                    {"data":"email"},
+                    {"data":"user_type"},
+                    {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
+                  ]
+              });
+}
+         listar();
+        })
+      } else {
+        alertify.alert("Ocurrió un error, puedes volver a intentar la operación.");
+      }
+    }
+  }
+  xhr.send(JSON.stringify(fields))
+  }
+});

@@ -16,16 +16,16 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>Título</title>
   <meta name="description" content="Un Punto de venta.">
-
+  <?php include('./helpers/styles.php');?>
   </head>
   <body>
     <?php include('./helpers/navbar.php'); ?>
-    <h1 style="color:white;font-weight:bold;font-family: fantasy;font-size:50px">Usuarios Registrados: </h1>
+    <h1 class="adminText">Administracion de usuarios</h1>
     <div class="row"> 
-      <div class="col-md-6">
+        <div class="col-md-12">
           <div class="contenedorBotones">
-            <button class="btn btn-primary botonIngresar" style="margin-left:250px;">Ingresar</button>
-                <div id="contentIng" style="display: none">
+            <button class="btn btn-primary botonIngresar" id="insert" style="margin-left:250px;">Ingresar</button>
+                <div id="contentIng" style="display: none;">
                   <form>
                           <div class="form-group">
                               <label for="nombre">Nombre</label>
@@ -50,10 +50,10 @@
                           <button class="btn" id="insertButton">Ingresar</button>               
                   </form>
           </div>
-          <button class="btn btn-primary botonModificar" style="margin-left:250px;">Modificar</button>
+          <button class="btn btn-primary botonModificar" id="update" style="margin-left:250px;">Actualizar</button>
           <div id="contentIng2" style="display: none;">
                   <form>
-                          <div class="form-group"  style="display:none">                            
+                          <div class="form-group"  style="display:none; margin-bottom: 1px;">                            
                               <input class="form-control" type="text" id="id1" required>
                           </div>
                           <div class="form-group">
@@ -78,13 +78,15 @@
                           </div>
                           <button class="btn" id="updateButton">Modificar</button>
                   </form>
+              </div>
+              <input type="text" id="valorId" style="display: none">
           </div>
-          <input type="text" id="valorId">
-      </div>
+        </div>
     </div>
-    <div class="col-md-6">
+     <div class="row">  
+         <div class="col-md-12">
               <form id="dataTable">
-                <table class="table table-bordered table-hover center"  id="tablaProducto">                
+                <table class="table table-bordered table-hover center" id="tablaProducto">                
                   <thead>
                     <tr>
                       <th>Nombre</th>
@@ -96,8 +98,10 @@
                   </thead>
                 </table>
                  </form>         
+     </div> 
+
      </div>   
-    <?php include('./helpers/styles.php'); ?>
-    <?php include('./helpers/scripts.php'); ?>
+    
+    <?php include('./helpers/scripts.php');?>
   </body>
 </html>

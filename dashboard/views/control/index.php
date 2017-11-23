@@ -25,7 +25,7 @@
 					   	<div class="text-center">
 					   		<span class="option-image"><i class="fa fa-user" aria-hidden="true"></i></span>
 					   		<p>Administrar usuarios.</p>
-					   		<a href="#" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
+					   		<a href="users.php" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
 					   	</div>
 					  </div>
 					</div>
