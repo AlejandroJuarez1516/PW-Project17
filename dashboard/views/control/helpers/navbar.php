@@ -6,9 +6,11 @@
 	$serverProtocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 	$serverName = $_SERVER['SERVER_NAME'];
 	$url = 'PW-Project17/assets/images/brand_w.png';
-	if ($_SERVER['REQUEST_URI'] != "/2017/PW-Project17/dashboard/views/control/") {
+
+	if ($_SERVER['REQUEST_URI'] != "/PW-Project17/dashboard/views/control/" && $_SERVER['REQUEST_URI'] != "/PW-Project17/dashboard/views/control/index.php") {
 		$return = true;
-	}
+	} 
+
 	$username = $_SESSION['fullname'];
 
 ?>
@@ -34,7 +36,7 @@
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Configuración</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#"><i class="fa fa-lock" aria-hidden="true"></i> Cerrar Sesión</a>
+		          <a class="dropdown-item" href="#" id="logOut"><i class="fa fa-lock" aria-hidden="true"></i> Cerrar Sesión</a>
 		        </div>
 		      </li>
 	    </ul>

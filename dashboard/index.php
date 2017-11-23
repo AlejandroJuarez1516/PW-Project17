@@ -3,9 +3,9 @@
 	require_once './classes/database.php';
 
 	$connection = database::connect();
-	$sql = 'SELECT COUNT(id) FROM users'; $params = null;
+	$sql = 'SELECT COUNT(id) AS count FROM users'; $params = null;
 	$count = database::getRow($sql, $params);
-	if ($count[0] > 0) {
+	if ($count['count'] > 0) {
 		require_once "./views/login.php";
 	} else {
 		require_once "./views/signup.php";

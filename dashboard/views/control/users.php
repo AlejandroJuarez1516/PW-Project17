@@ -22,9 +22,11 @@
     <?php include('./helpers/navbar.php'); ?>
     <h1 class="adminText">Administracion de usuarios</h1>
     <div class="row"> 
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="contenedorBotones">
-            <button class="btn btn-primary botonIngresar" id="insert" style="margin-left:250px;">Ingresar</button>
+            <div class="buttons">
+                <button class="btn btn-outline-secondary botonIngresar" id="insert" style="margin-left:250px;"><i class="fa fa-plus" aria-hidden="true"></i>Ingresar</button>
+            </div>  
                 <div id="contentIng" style="display: none;">
                   <form>
                           <div class="form-group">
@@ -50,7 +52,9 @@
                           <button class="btn" id="insertButton">Ingresar</button>               
                   </form>
           </div>
-          <button class="btn btn-primary botonModificar" id="update" style="margin-left:250px;">Actualizar</button>
+
+          <button class="btn btn-outline-secondary botonModificar" id="update" style="margin-left:250px;"><i class="fa fa-plus" aria-hidden="true"></i>Actualizar</button>
+
           <div id="contentIng2" style="display: none;">
                   <form>
                           <div class="form-group"  style="display:none; margin-bottom: 1px;">                            
@@ -82,9 +86,7 @@
               <input type="text" id="valorId" style="display: none">
           </div>
         </div>
-    </div>
-     <div class="row">  
-         <div class="col-md-12">
+         <div class="col-md-6">
               <form id="dataTable">
                 <table class="table table-bordered table-hover center" id="tablaProducto">                
                   <thead>
@@ -98,7 +100,7 @@
                   </thead>
                 </table>
                  </form>         
-     </div> 
+         </div> 
 
      </div>   
     

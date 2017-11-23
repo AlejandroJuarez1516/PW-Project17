@@ -9,9 +9,9 @@ $(document).ready(function (){
     },
      "columns":[
       {"data":"name"},
-      {"data":"last_name"},
+      {"data":"lastname"},
       {"data":"email"},
-      {"data":"user_type"},
+      {"data":"usertype"},
       {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
     ]
   });
@@ -23,7 +23,7 @@ $(document).ready(function (){
   var obtenerData = function(){
   $("tbody").on("click", "button.editar", function(){
     var data = table.row( $(this).parents("tr") ).data();
-    var name = $("#name1").val( data.name ), last_name = $("#last_name1").val( data.last_name ), email = $("#email1").val( data.email ), password = $("#password1").val( data.password ), userType = $("#userType1").val( data.user_type ), id = $("#id1").val( data.id );
+    var name = $("#name1").val( data.name ), last_name = $("#last_name1").val( data.lastname ), email = $("#email1").val( data.email ), password = $("#password1").val( data.password ), userType = $("#userType1").val( data.user_type ), id = $("#id1").val( data.id );
   });
   $("tbody").on("click", "button.borrar", function(){
     var data = table.row( $(this).parents("tr") ).data();
@@ -35,7 +35,6 @@ $(document).ready(function (){
 
 obtenerData("#tablaProducto", table);
 $("tbody").on("click", "button.borrar", function(){
-  if(confirm("¿Desea eliminar?")){
   event.preventDefault()
   var fields = {
     id: document.getElementById("valorId").value
@@ -59,9 +58,9 @@ $("tbody").on("click", "button.borrar", function(){
                 },
                  "columns":[
                     {"data":"name"},
-                    {"data":"last_name"},
+                    {"data":"lastname"},
                     {"data":"email"},
-                    {"data":"user_type"},
+                    {"data":"usertype"},
                     {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
                   ]
               });
@@ -74,7 +73,7 @@ $("tbody").on("click", "button.borrar", function(){
     }
   }
   xhr.send(JSON.stringify(fields))
-  }
+  
 });
 
 
@@ -94,7 +93,8 @@ $(".botonIngresar").click(function(){
   }else{
      boton.html("Ingresar");
      contenedor.attr("style","display: none;");
-     $("#update").attr("class","btn btn-primary botonModificar");
+     $("#update").attr("class","btn btn-outline-secondary botonModificar");
+     cleanFields();
      botonIngresar = false;
   }
 });
@@ -110,7 +110,8 @@ $(".botonModificar").click(function(){
   }else{
      boton2.html("Actualizar");
      contenedor2.attr("style","display: none;");
-     $("#insert").attr("class","btn btn-primary botonIngresar");
+     $("#insert").attr("class","btn btn-outline-secondary botonIngresar");
+     cleanFields();
      botonIngresar = false;
   }
 });
@@ -133,7 +134,6 @@ function loadHttpRequest () {
   }
   return request
 }
-
 
 document.getElementById("insertButton").addEventListener('click', function (event) {
   event.preventDefault()
@@ -163,9 +163,9 @@ document.getElementById("insertButton").addEventListener('click', function (even
               },
                "columns":[
                 {"data":"name"},
-                {"data":"last_name"},
+                {"data":"lastname"},
                 {"data":"email"},
-                {"data":"user_type"},
+                {"data":"usertype"},
                 {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
               ]
             });
@@ -178,6 +178,7 @@ document.getElementById("insertButton").addEventListener('click', function (even
     }
   }
   xhr.send(JSON.stringify(fields))
+  cleanFields();
 })
 
 
@@ -210,9 +211,9 @@ document.getElementById("updateButton").addEventListener('click', function (even
                 },
                  "columns":[
                     {"data":"name"},
-                    {"data":"last_name"},
+                    {"data":"lastname"},
                     {"data":"email"},
-                    {"data":"user_type"},
+                    {"data":"usertype"},
                     {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
                   ]
               });
@@ -225,11 +226,11 @@ document.getElementById("updateButton").addEventListener('click', function (even
     }
   }
   xhr.send(JSON.stringify(fields))
+  cleanFields();
 })
 
 
 $("tbody").on("click", "button.borrar", function(){
-  if(confirm("¿Desea eliminar?")){
   event.preventDefault()
   var fields = {
     id: document.getElementById("valorId").value
@@ -253,9 +254,9 @@ $("tbody").on("click", "button.borrar", function(){
                 },
                  "columns":[
                     {"data":"name"},
-                    {"data":"last_name"},
+                    {"data":"lastname"},
                     {"data":"email"},
-                    {"data":"user_type"},
+                    {"data":"usertype"},
                     {"defaultContent":"<button type='button' class='editar inlineB'><i class='fa fa-pencil' aria-hidden='true'></i></button><button type='button' class='borrar inlineB'><i class='fa fa-trash' aria-hidden='true'></i></button>"}
                   ]
               });
@@ -268,5 +269,13 @@ $("tbody").on("click", "button.borrar", function(){
     }
   }
   xhr.send(JSON.stringify(fields))
-  }
+  
 });
+
+
+function cleanFields(){
+  var fields = document.getElementsByClassName("form-control");
+  for (var i =  0; i < fields.length; i++) {
+      fields[i].value = "";
+  }
+}

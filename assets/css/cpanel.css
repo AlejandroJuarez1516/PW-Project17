@@ -1,0 +1,71 @@
+.dashboard-content {
+	width: 100%;
+	margin-top: 15%;
+	padding: 15px 15px;
+}
+
+.option {
+	width: 100%;
+	height: 200px;
+	border-color: #34495e;
+	border-radius: 5px;
+	background: #fff;
+	border: 1px solid #bdc3c7;
+	color: #222;
+}
+
+.option .card-body {
+	width: 100%;
+	margin-top: 10%;
+}
+
+/************* Estilos del blog *************/
+
+.blog-content {
+	width: 100%;
+	margin-top: 10%;
+	padding: 15px 15px;
+}
+
+.blog-content .title {
+	margin-bottom: 3%;
+}
+
+.blog-content .blog-img {
+	width: 100%;
+	height: 290px;
+	margin-top: 10px; 
+}
+
+.blog-content .btn-file {
+	width: 100%;
+}
+
+.blog-content .buttons {
+	width: 100%;
+	height: 60px;
+	display: inline-block;
+}
+
+/************* Estilos de videos *************/
+
+.video-content {
+	width: 100%;
+	margin-top: 10%;
+	padding: 15px 15px;
+}
+
+.video-content .title {
+	margin-bottom: 3%;
+}
+
+.video-content .buttons {
+	width: 100%;
+	height: 60px;
+	display: inline-block;
+}
+
+.video-content .video {
+	width: 100%;
+	height: 345px;
+}
