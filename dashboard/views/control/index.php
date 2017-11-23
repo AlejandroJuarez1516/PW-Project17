@@ -47,7 +47,7 @@
 					   	<div class="text-center">
 					   		<span class="option-image"><i class="fa fa-play" aria-hidden="true"></i></span>
 					   		<p>Administrar videos.</p>
-					   		<a href="#" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
+					   		<a href="videos.php" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
 					   	</div>
 					  </div>
 					</div>

@@ -7,7 +7,7 @@
 	$serverName = $_SERVER['SERVER_NAME'];
 	$url = 'PW-Project17/assets/images/brand_w.png';
 
-	if ($_SERVER['REQUEST_URI'] != "/PW-Project17/dashboard/views/control/") {
+	if ($_SERVER['REQUEST_URI'] != "/PW-Project17/dashboard/views/control/" && $_SERVER['REQUEST_URI'] != "/PW-Project17/dashboard/views/control/index.php") {
 		$return = true;
 	} 
 

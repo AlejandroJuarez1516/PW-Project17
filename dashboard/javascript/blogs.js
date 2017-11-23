@@ -2,38 +2,38 @@ function httpRequest () {
 	return new XMLHttpRequest() || new ActiveXObject("MSXML2.XMLHTTP") || new ActiveXObject("Microsoft.XMLHTTP") || null
 }
 
-const btnFile = document.getElementById("btn-file") || null
-const btnClear = document.getElementById("btn-clear") || null
-const btnUpdate = document.getElementById("btn-update") || null
-const btnDelete = document.getElementById("btn-delete") || null
-const btnSend = document.getElementById("btn-send") || null
+const btnBFile = document.getElementById("btn-file") || null
+const btnBClear = document.getElementById("btn-clear") || null
+const btnBUpdate = document.getElementById("btn-update") || null
+const btnBDelete = document.getElementById("btn-delete") || null
+const btnBSend = document.getElementById("btn-send") || null
 
 document.addEventListener("DOMContentLoaded", function () {
-	if (btnFile != null) {
+	if (btnBFile != null) {
 		loadData()
 		CKEDITOR.replace('content')
 		fileListener()
+	}	
+
+	if (btnBSend != null) {
+		sendBListener()
 	}
 
-	if (btnSend != null) {
-		sendListener()
+	if (btnBClear != null) {
+		clearBListener()
 	}
 
-	if (btnClear != null) {
-		clearListener()
+	if (btnBUpdate != null) {
+		updateBListener()
 	}
 
-	if (btnUpdate != null) {
-		updateListener()
-	}
-
-	if (btnDelete != null) {
-		deleteListener()
+	if (btnBDelete != null) {
+		deleteBListener()
 	}
 })
 
-function sendListener() {
-	btnSend.addEventListener('click', function (event) {
+function sendBListener() {
+	btnBSend.addEventListener('click', function (event) {
 		event.preventDefault()
 		var fields = {
 		 	title: document.getElementById("title").value,
@@ -51,7 +51,7 @@ function sendListener() {
 					alertify.alert(response[0].message , function (event) {
 						event.preventDefault()
 						const table = document.querySelector('.table-body')
-						btnClear.click()
+						btnBClear.click()
 						getBlogs(table)
 					})
 				} else {
@@ -63,8 +63,8 @@ function sendListener() {
 	})
 }
 
-function clearListener() {
-	btnClear.addEventListener('click', function (event) {
+function clearBListener() {
+	btnBClear.addEventListener('click', function (event) {
 		event.preventDefault()
 		CKEDITOR.instances.content.setData("")
 		document.getElementById("title").value = ""
@@ -73,8 +73,8 @@ function clearListener() {
 	})
 }
 
-function updateListener () {
-	btnUpdate.addEventListener('click', function (event) {
+function updateBListener () {
+	btnBUpdate.addEventListener('click', function (event) {
 		event.preventDefault()
 	
 		if (document.getElementById("id").value.length == 0) {
@@ -99,7 +99,7 @@ function updateListener () {
 					alertify.alert(response[0].message , function (event) {
 						event.preventDefault()
 						const table = document.querySelector('.table-body')
-						btnClear.click()
+						btnBClear.click()
 						getBlogs(table)
 					})
 				} else {
@@ -111,8 +111,8 @@ function updateListener () {
 	})
 }
 
-function deleteListener () {
-	btnDelete.addEventListener('click', function (event) {
+function deleteBListener () {
+	btnBDelete.addEventListener('click', function (event) {
 		event.preventDefault();
 
 		if (document.getElementById("id").value.length == 0) {
@@ -134,7 +134,7 @@ function deleteListener () {
 					alertify.alert(response[0].message , function (event) {
 						event.preventDefault()
 						const table = document.querySelector('.table-body')
-						btnClear.click()
+						btnBClear.click()
 						getBlogs(table)
 					})
 				} else {
@@ -147,7 +147,7 @@ function deleteListener () {
 }
 
 function fileListener () {
-	btnFile.addEventListener('click', function (event) {
+	btnBFile.addEventListener('click', function (event) {
 		event.preventDefault()
 		document.getElementById("file").click()
 	})
@@ -165,44 +165,46 @@ function getBlogs (dataTable) {
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status) {
 			const response = JSON.parse(xhr.responseText)
-			const node = response.length
-			var tr = null, id = null, title = null, postDate = null, action = null
-			
-			dataTable.innerHTML = ""
-			
-			for (var i = 0; i < node; i++) {
+			if (!response[0].error) {
+				const node = response.length
+				var tr = null, id = null, title = null, postDate = null, action = null
+				
+				dataTable.innerHTML = ""
+				
+				for (var i = 0; i < node; i++) {
 
-				tr = document.createElement("tr")
-				id = document.createElement("td")
-				title = document.createElement("td")
-				postDate = document.createElement("td")
-				action = document.createElement("td")
+					tr = document.createElement("tr")
+					id = document.createElement("td")
+					title = document.createElement("td")
+					postDate = document.createElement("td")
+					action = document.createElement("td")
 
-				var button = document.createElement("button")
-				button.appendChild(document.createTextNode("Ver"))
+					var button = document.createElement("button")
+					button.appendChild(document.createTextNode("Ver"))
 
-				button.setAttribute('class', 'btn btn-outline-dark')
-				button.setAttribute('blogId', response[i].id)
-				button.setAttribute('title', response[i].title)
-				button.setAttribute('image', response[i].image)
-				button.setAttribute('content', response[i].blogContent)
+					button.setAttribute('class', 'btn btn-outline-dark')
+					button.setAttribute('blogId', response[i].id)
+					button.setAttribute('title', response[i].title)
+					button.setAttribute('image', response[i].image)
+					button.setAttribute('content', response[i].blogContent)
 
-				button.onclick = function (event) {
-					const element = event.target
-					editblog(element)
+					button.onclick = function (event) {
+						const element = event.target
+						editblog(element)
+					}
+
+					id.appendChild(document.createTextNode(response[i].id))
+					title.appendChild(document.createTextNode(response[i].title))
+					postDate.appendChild(document.createTextNode(response[i].postDate))
+					action.appendChild(button)
+
+					tr.appendChild(id)
+					tr.appendChild(title)
+					tr.appendChild(postDate)
+					tr.appendChild(action)
+
+					dataTable.appendChild(tr)
 				}
-
-				id.appendChild(document.createTextNode(response[i].id))
-				title.appendChild(document.createTextNode(response[i].title))
-				postDate.appendChild(document.createTextNode(response[i].postDate))
-				action.appendChild(button)
-
-				tr.appendChild(id)
-				tr.appendChild(title)
-				tr.appendChild(postDate)
-				tr.appendChild(action)
-
-				dataTable.appendChild(tr)
 			}
 		}
 	}

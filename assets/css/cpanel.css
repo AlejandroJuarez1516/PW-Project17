@@ -46,3 +46,26 @@
 	height: 60px;
 	display: inline-block;
 }
+
+/************* Estilos de videos *************/
+
+.video-content {
+	width: 100%;
+	margin-top: 10%;
+	padding: 15px 15px;
+}
+
+.video-content .title {
+	margin-bottom: 3%;
+}
+
+.video-content .buttons {
+	width: 100%;
+	height: 60px;
+	display: inline-block;
+}
+
+.video-content .video {
+	width: 100%;
+	height: 345px;
+}

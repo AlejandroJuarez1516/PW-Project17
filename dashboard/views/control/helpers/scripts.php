@@ -9,8 +9,9 @@
 
 
 	$ckeditor = $serverProtocol . '://' . $serverName . '/' . 'PW-Project17/assets/js/ckeditor/ckeditor.js';
-	$blog = $serverProtocol . '://' . $serverName . '/'. $url .'blog.js';
+	$blog = $serverProtocol . '://' . $serverName . '/'. $url .'blogs.js';
 	$dashboard = $serverProtocol . '://' . $serverName . '/'. $url .'cpanel.js';
+	$videos = $serverProtocol . '://' . $serverName . '/'. $url .'videos.js';
 ?>
 
 <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
@@ -21,3 +22,4 @@
 <script src="<?php echo $ckeditor; ?>"></script>
 <script src="<?php echo $blog; ?>"></script>
 <script src="<?php echo $dashboard; ?>"></script>
+<script src="<?php echo $videos; ?>"></script>
