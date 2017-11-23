@@ -17,6 +17,9 @@
 	<?php include('./helpers/navbar.php'); ?>
 
 	<div class="dashboard-content">
+		<div class="text-center">
+			<h3 class="title">Bienvenido.</h3>
+		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
@@ -58,7 +61,7 @@
 					   	<div class="text-center">
 					   		<span class="option-image"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
 					   		<p>Administrar lugares.</p>
-					   		<a href="#" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
+					   		<a href="places.php" class="btn btn-outline-dark" style="border-radius: 50%;"><i class="fa fa-check" aria-hidden="true"></i></a>
 					   	</div>
 					  </div>
 					</div>

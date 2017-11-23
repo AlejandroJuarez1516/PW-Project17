@@ -10,19 +10,19 @@
 	$jsonObject = json_decode($json);
 	$output = array();
 
-	$sql = "SELECT COUNT(*) AS count FROM videos WHERE name = ?";
-	$params = array($jsonObject->name);
-	$videos = Database::getRow($sql, $params);
+	$sql = "SELECT COUNT(*) AS count FROM places WHERE place = ? AND id <> ?";
+	$params = array($jsonObject->place, $jsonObject->id);
+	$blogs = Database::getRow($sql, $params);
 	
-	if ($videos['count'] == 0) {
-		$sql = "INSERT INTO videos (name, link, description) VALUES (?,?,?)";
-		$params = array($jsonObject->name, $jsonObject->link, $jsonObject->description);
+	if ($blogs['count'] == 0) {
+		$sql = "UPDATE places SET place = ?, image = ?, description = ? WHERE id = ?";
+		$params = array($jsonObject->place, $jsonObject->image, $jsonObject->description, $jsonObject->id);
 		Database::executeRow($sql, $params);
 		$output[] = array('success' => true,
-						  'message' => '¡Se ha ingresado un video!');
+						  'message' => '¡El lugar se ha modificado con exito!');
 	} else {
 		$output[] = array('error' => true,
-						  'message' => '¡Ya existe un video con ese titulo!');
+						  'message' => '¡Ya existe un lugar con ese nombre!');
 	}
 
 	echo json_encode($output);

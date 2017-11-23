@@ -1,7 +1,11 @@
 .dashboard-content {
 	width: 100%;
-	margin-top: 15%;
+	margin-top: 7%;
 	padding: 15px 15px;
+}
+
+.blog-content .title {
+	margin-bottom: 3%;
 }
 
 .option {
@@ -23,7 +27,7 @@
 
 .blog-content {
 	width: 100%;
-	margin-top: 10%;
+	margin-top: 7%;
 	padding: 15px 15px;
 }
 
@@ -51,7 +55,7 @@
 
 .video-content {
 	width: 100%;
-	margin-top: 10%;
+	margin-top: 7%;
 	padding: 15px 15px;
 }
 
@@ -68,4 +72,28 @@
 .video-content .video {
 	width: 100%;
 	height: 345px;
+}
+
+/************* Estilos de lugares *************/
+
+.places-content {
+	width: 100%;
+	margin-top: 7%;
+	padding: 15px 15px;
+}
+
+.places-content .title {
+	margin-bottom: 3%;
+}
+
+.places-content .buttons {
+	width: 100%;
+	height: 60px;
+	display: inline-block;
+}
+
+.places-content .place-img {
+	width: 100%;
+	height: 290px;
+	margin-top: 10px; 
 }

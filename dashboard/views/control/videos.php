@@ -21,16 +21,17 @@
 		</div>
 		<div class="container">
 			<div class="buttons">
-			  	<button class="btn btn-outline-secondary" id="btn-send"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
-			  	<button class="btn btn-outline-secondary" id="btn-update"><i class="fa fa-refresh" aria-hidden="true"></i> Modificar</button>
-			  	<button class="btn btn-outline-secondary" id="btn-delete"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</button>
-			  	<button class="btn btn-outline-secondary" id="btn-clear"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
+			  	<button class="btn btn-outline-secondary" id="btn-video-send"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
+			  	<button class="btn btn-outline-secondary" id="btn-video-update"><i class="fa fa-refresh" aria-hidden="true"></i> Modificar</button>
+			  	<button class="btn btn-outline-secondary" id="btn-video-delete"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</button>
+			  	<button class="btn btn-outline-secondary" id="btn-video-clear"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
 		  	</div>	
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="title">Titulo</label>
 						<input type="text" class="form-control" id="title"/>
+						<input type="text" id="id" hidden/>
 					</div>
 					<div class="form-group">
 						<label for="link">Enlace del video</label>
@@ -44,6 +45,19 @@
 				<div class="col-md-6">
 					<iframe class="video" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
 				</div>
+			</div>
+			<div class="videos-table">
+			  	<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Titulo</th>
+				      <th scope="col">Descripción</th>
+				    </tr>
+				  </thead> 
+				  <tbody class="table-video-body"></tbody>
+				</table>
+			  </div>
 			</div>
 		</div>
 	</div>

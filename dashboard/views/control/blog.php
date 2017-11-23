@@ -27,10 +27,10 @@
 		</div>
 		<div class="container">
 		  <div class="buttons">
-		  	<button class="btn btn-outline-secondary" id="btn-send"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
-		  	<button class="btn btn-outline-secondary" id="btn-update"><i class="fa fa-refresh" aria-hidden="true"></i> Modificar</button>
-		  	<button class="btn btn-outline-secondary" id="btn-delete"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</button>
-		  	<button class="btn btn-outline-secondary" id="btn-clear"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
+		  	<button class="btn btn-outline-secondary" id="btn-blog-send"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
+		  	<button class="btn btn-outline-secondary" id="btn-blog-update"><i class="fa fa-refresh" aria-hidden="true"></i> Modificar</button>
+		  	<button class="btn btn-outline-secondary" id="btn-blog-delete"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</button>
+		  	<button class="btn btn-outline-secondary" id="btn-blog-clear"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
 		  </div>	
 		  <form>
 		  	 <div class="form-group">
@@ -46,7 +46,7 @@
 				  	</div>
 				  	<div class="col-md-4">
 				  		<div class="form-group text-center">
-							<button class="btn btn-outline-secondary btn-file" id="btn-file">
+							<button class="btn btn-outline-secondary btn-file" id="btn-blog-file">
 								<i class="fa fa-picture-o" aria-hidden="true"></i> Agregar una imagen.
 							</button>
 							<img src="<?php echo $noImage; ?>" class="img-responsive blog-img" id="blog-img" alt="blogImage" />
@@ -64,8 +64,8 @@
 			      <th scope="col">Titulo</th>
 			      <th scope="col">Fecha</th>
 			    </tr>
-			  </thead>
-			  <tbody class="table-body"></tbody>
+			  </thead> 
+			  <tbody class="table-blog-body"></tbody>
 			</table>
 		  </div>
 		</div>

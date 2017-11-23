@@ -2,47 +2,47 @@ function httpRequest () {
 	return new XMLHttpRequest() || new ActiveXObject("MSXML2.XMLHTTP") || new ActiveXObject("Microsoft.XMLHTTP") || null
 }
 
-const btnBlogFile = document.getElementById("btn-blog-file") || null
-const btnBlogClear = document.getElementById("btn-blog-clear") || null
-const btnBlogUpdates = document.getElementById("btn-blog-update") || null
-const btnBlogDelete = document.getElementById("btn-blog-delete") || null
-const btnBlogSave = document.getElementById("btn-blog-send") || null
+const btnPlacesFile = document.getElementById("btn-places-file") || null
+const btnPlacesClear = document.getElementById("btn-places-clear") || null
+const btnPlacesUpdate = document.getElementById("btn-places-update") || null
+const btnPlacesDelete = document.getElementById("btn-places-delete") || null
+const btnPlacesSave = document.getElementById("btn-places-send") || null
 
 document.addEventListener('DOMContentLoaded', function () {
-	if (btnBlogFile != null) {
-		loadBlogData()
-		CKEDITOR.replace('content')
-		fileListener()
+	if (btnPlacesFile != null) {
+		loadPlacesData()
+		filePlacesListener()
 	}	
 
-	if (btnBlogSave != null) {
-		sendBlogListener()
+	if (btnPlacesSave != null) {
+		sendPlacesListener()
 	}
 
-	if (btnBlogClear != null) {
-		clearBlogListener()
+	if (btnPlacesClear != null) {
+		clearPlacesListener()
 	}
 
-	if (btnBlogUpdates != null) {
-		updateBlogListener()
+	if (btnPlacesDelete != null) {
+		deletePlacesListener()
 	}
 
-	if (btnBlogDelete != null) {
-		deleteBlogListener()
+	if (btnPlacesUpdate != null) {
+		updatePlacesListener()
 	}
 })
 
-function sendBlogListener() {
-	btnBlogSave.addEventListener('click', function (event) {
+function sendPlacesListener() {
+	btnPlacesSave.addEventListener('click', function (event) {
 		event.preventDefault()
+
 		var fields = {
-		 	title: document.getElementById("title").value,
-		 	content: CKEDITOR.instances.content.getData(),
+		 	place: document.getElementById("place").value,
+		 	description: document.getElementById("description").value,
 		 	image: result
 		}
-		
+
 		const xhr = new httpRequest()
-		xhr.open('POST', '../../api/blogs/save-blog.php')
+		xhr.open('POST', '../../api/places/save-place.php')
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200) {
@@ -50,9 +50,9 @@ function sendBlogListener() {
 				if (response[0].success) {
 					alertify.alert(response[0].message , function (event) {
 						event.preventDefault()
-						const table = document.querySelector('.table-blog-body')
-						btnBlogClear.click()
-						getBlogs(table)
+						const table = document.querySelector('.table-place-body')
+						btnPlacesClear.click()
+						getPlaces(table)
 					})
 				} else {
 					alertify.alert(response[0].message)
@@ -63,34 +63,24 @@ function sendBlogListener() {
 	})
 }
 
-function clearBlogListener() {
-	btnBlogClear.addEventListener('click', function (event) {
-		event.preventDefault()
-		CKEDITOR.instances.content.setData("")
-		document.getElementById("title").value = ""
-		document.getElementById("id").value = ""
-		document.getElementById('blog-img').src = "http://localhost/PW-Project17/assets/images/noImage.jpg"
-	})
-}
-
-function updateBlogListener () {
-	btnBlogUpdates.addEventListener('click', function (event) {
+function updatePlacesListener () {
+	btnPlacesUpdate.addEventListener('click', function (event) {
 		event.preventDefault()
 	
 		if (document.getElementById("id").value.length == 0) {
-			alertify.alert("No se ha seleccionado ningun blog!")
+			alertify.alert("No se ha seleccionado ningun lugar!")
 			return false
 		} 
 
 		var fields = {
 			id: document.getElementById("id").value,
-		 	title: document.getElementById("title").value,
-		 	image: document.getElementById("blog-img").src,
-		 	content: CKEDITOR.instances.content.getData()
+		 	place: document.getElementById("place").value,
+		 	description: document.getElementById("description").value,
+		 	image: document.getElementById("place-img").src
 		}
 
 		const xhr = new httpRequest()
-		xhr.open('POST', '../../api/blogs/update-blog.php')
+		xhr.open('POST', '../../api/places/update-place.php')
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200) {
@@ -98,9 +88,9 @@ function updateBlogListener () {
 				if (response[0].success) {
 					alertify.alert(response[0].message , function (event) {
 						event.preventDefault()
-						const table = document.querySelector('.table-blog-body')
-						btnBlogClear.click()
-						getBlogs(table)
+						const table = document.querySelector('.table-place-body')
+						btnPlacesClear.click()
+						getPlaces(table)
 					})
 				} else {
 					alertify.alert(response[0].message)
@@ -111,12 +101,12 @@ function updateBlogListener () {
 	})
 }
 
-function deleteBlogListener () {
-	btnBlogDelete.addEventListener('click', function (event) {
+function deletePlacesListener () {
+	btnPlacesDelete.addEventListener('click', function (event) {
 		event.preventDefault();
 
 		if (document.getElementById("id").value.length == 0) {
-			alertify.alert("No se ha seleccionado ningun blog!")
+			alertify.alert("No se ha seleccionado ningun lugar!")
 			return false
 		} 
 
@@ -125,7 +115,7 @@ function deleteBlogListener () {
 		}
 
 		const xhr = new httpRequest()
-		xhr.open('POST', '../../api/blogs/delete-blog.php')
+		xhr.open('POST', '../../api/places/delete-place.php')
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200) {
@@ -133,9 +123,9 @@ function deleteBlogListener () {
 				if (response[0].success) {
 					alertify.alert(response[0].message , function (event) {
 						event.preventDefault()
-						const table = document.querySelector('.table-blog-body')
-						btnBlogClear.click()
-						getBlogs(table)
+						const table = document.querySelector('.table-place-body')
+						btnPlacesClear.click()
+						getPlaces(table)
 					})
 				} else {
 					alertify.alert(response[0].message)
@@ -146,28 +136,38 @@ function deleteBlogListener () {
 	})
 }
 
-function fileListener () {
-	btnBlogFile.addEventListener('click', function (event) {
+function filePlacesListener () {
+	btnPlacesFile.addEventListener('click', function (event) {
 		event.preventDefault()
 		document.getElementById("file").click()
 	})
 }
 
-function loadBlogData () {
-	const table = document.querySelector('.table-blog-body')
-	getBlogs(table)
+function loadPlacesData () {
+	const table = document.querySelector('.table-place-body')
+	getPlaces(table)
 }
 
-function getBlogs (dataTable) {
+function clearPlacesListener() {
+	btnPlacesClear.addEventListener('click', function (event) {
+		event.preventDefault()
+		document.getElementById("id").value = ""
+		document.getElementById("place").value = ""
+		document.getElementById("description").value = ""
+		document.getElementById('place-img').src = "http://localhost/PW-Project17/assets/images/noImage.jpg"
+	})
+}
+
+function getPlaces (dataTable) {
 	const xhr = new httpRequest()
-	xhr.open('GET', '../../api/blogs/get-blogs.php')
+	xhr.open('GET', '../../api/places/get-places.php')
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status) {
 			const response = JSON.parse(xhr.responseText)
 			if (!response[0].error) {
 				const node = response.length
-				var tr = null, id = null, title = null, postDate = null, action = null
+				var tr = null, id = null, places = null, description = null, action = null
 				
 				dataTable.innerHTML = ""
 				
@@ -175,32 +175,32 @@ function getBlogs (dataTable) {
 
 					tr = document.createElement("tr")
 					id = document.createElement("td")
-					title = document.createElement("td")
-					postDate = document.createElement("td")
+					places = document.createElement("td")
+					description = document.createElement("td")
 					action = document.createElement("td")
 
 					var button = document.createElement("button")
 					button.appendChild(document.createTextNode("Ver"))
 
 					button.setAttribute('class', 'btn btn-outline-dark')
-					button.setAttribute('blogId', response[i].id)
-					button.setAttribute('title', response[i].title)
+					button.setAttribute('placeId', response[i].id)
+					button.setAttribute('places', response[i].place)
+					button.setAttribute('description', response[i].description)
 					button.setAttribute('image', response[i].image)
-					button.setAttribute('content', response[i].blogContent)
 
 					button.onclick = function (event) {
 						const element = event.target
-						editblog(element)
+						editplace(element)
 					}
 
 					id.appendChild(document.createTextNode(response[i].id))
-					title.appendChild(document.createTextNode(response[i].title))
-					postDate.appendChild(document.createTextNode(response[i].postDate))
+					places.appendChild(document.createTextNode(response[i].place))
+					description.appendChild(document.createTextNode(response[i].description))
 					action.appendChild(button)
 
 					tr.appendChild(id)
-					tr.appendChild(title)
-					tr.appendChild(postDate)
+					tr.appendChild(places)
+					tr.appendChild(description)
 					tr.appendChild(action)
 
 					dataTable.appendChild(tr)
@@ -211,17 +211,18 @@ function getBlogs (dataTable) {
 	xhr.send(null)
 }
 
-function editblog (element) {
+function editplace (element) {
 	var object = {
-		id: element.getAttribute('blogId'),
-		title: element.getAttribute('title'),
-		image: element.getAttribute('image'),
-		content: element.getAttribute('content')
+		id: element.getAttribute('placeId'),
+		place: element.getAttribute('places'),
+		description: element.getAttribute('description'),
+		image: element.getAttribute('image')
 	}
+
 	document.getElementById("id").value = object.id
-	document.getElementById('title').value = object.title
-	document.getElementById('blog-img').src = "data:image/jpg;base64" + object.image
-	CKEDITOR.instances.content.setData(object.content)
+	document.getElementById('place').value = object.place
+	document.getElementById("description").value = object.description
+	document.getElementById('place-img').src = "data:image/jpg;base64" + object.image
 }
 
 
@@ -237,7 +238,7 @@ jQuery('#file').on('change', function(e) { //se ejecuta luego de que el selector
  
   Lector = new FileReader() // se instancia el metodo de lectura File reader en la variable Lector
   Lector.onload = function(event) { // al cargar el archivo
-    jQuery('.blog-img').attr('src', event.target.result) //se le establece la imagen al atributo source "src" al la etiqueta img
+    jQuery('.place-img').attr('src', event.target.result) //se le establece la imagen al atributo source "src" al la etiqueta img
     var str = event.target.result // obtiene el result de la funcion
     result = str.substring(22) //se obtiene el BLOB puro del result de arriba
   };
